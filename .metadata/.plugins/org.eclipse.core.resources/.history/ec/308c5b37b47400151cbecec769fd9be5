@@ -1,0 +1,6 @@
+package network;
+
+public interface INetworkMessage {
+	NetworkMamager.MessageType getType();
+	String getMessage();
+}

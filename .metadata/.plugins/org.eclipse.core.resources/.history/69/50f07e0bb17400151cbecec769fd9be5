@@ -1,0 +1,8 @@
+package chat;
+
+import java.util.List;
+
+public interface IChatModel {
+	List<String> getMessages();
+	void setObserver(IChatObserver observer);
+}

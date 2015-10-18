@@ -1,0 +1,64 @@
+package chat;
+
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.Box;
+import java.awt.BorderLayout;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+
+import java.awt.Component;
+import javax.swing.JTextPane;
+import javax.swing.JButton;
+
+public class ChatUI {
+
+	private JFrame frame;
+	/**
+	 * @wbp.nonvisual location=-19,167
+	 */
+	private final Box verticalBox = Box.createVerticalBox();
+	private JTextField textField;
+	private JTextField textFieldUser;
+
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					ChatUI window = new ChatUI();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	public ChatUI() {
+		initialize();
+	}
+
+	private void initialize() {
+		frame = new JFrame();
+		frame.setSize(480, 320);
+		frame.setLocationRelativeTo(null);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(null);
+		
+		JTextArea textArea = new JTextArea();
+		textArea.setEditable(false);
+		textArea.setBounds(12, 12, 456, 237);
+		frame.getContentPane().add(textArea);
+		
+		textFieldUser = new JTextField();
+		textFieldUser.setBounds(12, 261, 327, 19);
+		frame.getContentPane().add(textFieldUser);
+		textFieldUser.setColumns(10);
+		
+		JButton btnSend = new JButton("New button");
+		btnSend.setBounds(351, 258, 117, 25);
+		frame.getContentPane().add(btnSend);
+		
+	}
+}

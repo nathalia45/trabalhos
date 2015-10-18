@@ -1,0 +1,50 @@
+package chat;
+
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.Box;
+import java.awt.BorderLayout;
+import javax.swing.JTextArea;
+
+public class ChatUI {
+
+	private JFrame frame;
+	/**
+	 * @wbp.nonvisual location=-19,167
+	 */
+	private final Box verticalBox = Box.createVerticalBox();
+
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					ChatUI window = new ChatUI();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	public ChatUI() {
+		initialize();
+	}
+
+	private void initialize() {
+		frame = new JFrame();
+		frame.setBounds(100, 100, 450, 300);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		Box verticalBox_1 = Box.createVerticalBox();
+		frame.getContentPane().add(verticalBox_1, BorderLayout.CENTER);
+		
+		JTextArea taChatTextContent = new JTextArea();
+		verticalBox_1.add(taChatTextContent);
+		
+		JTextArea taUserContent = new JTextArea();
+		verticalBox_1.add(taUserContent);
+	}
+
+}

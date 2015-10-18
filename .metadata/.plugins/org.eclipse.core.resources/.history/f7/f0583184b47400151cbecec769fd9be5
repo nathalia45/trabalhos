@@ -1,0 +1,80 @@
+package network;
+
+import java.io.IOException;
+import java.net.ServerSocket;
+
+import utils.Log;
+import network.NetworkMamager.MessageType;
+
+public class ChatServer {
+	private static ChatServer instance = null;
+	
+	private static ServerSocket server = null;
+	private static ConnectionHandler connectionHandler = null;
+	private static IChatServerListener listener = null;
+	private static boolean running = false;
+	
+	private ChatServer() {
+		try {
+			server = new ServerSocket(NetworkMamager.SERVER_PORT);
+			connectionHandler = new ConnectionHandler();
+		} catch (IOException e) { e.printStackTrace(); }
+	}
+	
+	public static synchronized ChatServer getInstance() {
+		if(instance == null)
+			instance = new ChatServer();
+			
+		return instance;
+	}
+	
+	public static void setListener(IChatServerListener listener) {
+		ChatServer.listener = listener;
+	}
+	
+	public void start() {
+		running = true;
+		new Thread() {
+			public void run() {
+				while(running) {
+					try {
+						
+						Log.i(this, "Waiting for connection...");
+						MSocket socket = new MSocket(server.accept());
+						Log.i(this, "Connected!");
+						
+						connectionHandler.handle(socket);
+						
+					} catch (IOException e) { e.printStackTrace(); }
+				}
+			};
+		}.start();
+	}
+	
+	private class ConnectionHandler {		
+		public synchronized void handle(MSocket socket) {
+			new Thread() {
+				public void run() {
+					INetworkMessage request = socket.getMessage();
+					
+					if(request != null) {
+						INetworkMessage response = handleMessage(request);
+						
+						socket.sendMessage(response);
+					}
+					
+					// *************************
+					socket.closeInOut();
+					socket.close();
+				};
+			}.start();
+		}
+		
+		public INetworkMessage handleMessage(INetworkMessage request){
+			String s = listener.onMessageReceive(request.getRequestCode(), request.getMessage());
+			if(s != null) return new NetworkMessage(MessageType.RESULT_OK, s);
+			return new NetworkMessage(MessageType.RESULT_ERROR, "");
+		}
+		
+	}
+}

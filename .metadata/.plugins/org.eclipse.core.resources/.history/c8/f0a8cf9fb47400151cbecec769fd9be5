@@ -1,0 +1,5 @@
+package network;
+
+public interface IChatClientListener {
+	void onExpResult(boolean resultOk, String expResult);
+}

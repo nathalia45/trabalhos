@@ -1,0 +1,49 @@
+package network;
+
+import java.io.IOException;
+import java.net.Socket;
+import java.net.UnknownHostException;
+
+import network.NetworkMamager.MessageType;
+
+public class ChatClient {
+	private static ChatClient instance = null;
+	
+	private static IChatClientListener listener = null;
+	
+	private ChatClient() {}
+	
+	public static synchronized ChatClient getInstance() {
+		if(instance == null) {
+			instance = new ChatClient();
+		}
+		
+		return instance;
+	}
+	
+	public static void setListener(IChatClientListener listener) {
+		ChatClient.listener = listener;
+	}
+	
+	public synchronized void sendMessage(final int requestCode, final String msg) {
+		new Thread() {
+			public void run() {
+				try {
+					MSocket socket = new MSocket(new Socket(NetworkMamager.SERVER_IP, NetworkMamager.SERVER_PORT));
+					
+					INetworkMessage request = new NetworkMessage(MessageType.GET_EXP_RESULT, exp);
+					socket.sendMessage(request);
+					
+					INetworkMessage response = socket.getMessage();
+					
+					listener.onExpResult(response.getType() == MessageType.RESULT_OK, response.getMessage());
+					
+					socket.closeInOut();
+					socket.close();
+					
+				} catch (UnknownHostException e) { e.printStackTrace();
+				} catch (IOException e) { e.printStackTrace(); }
+			};
+		}.start();
+	}
+}

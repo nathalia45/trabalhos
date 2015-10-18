@@ -1,0 +1,57 @@
+package chat;
+
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.Box;
+import java.awt.BorderLayout;
+import javax.swing.JTextArea;
+import java.awt.Component;
+import javax.swing.JTextPane;
+
+public class ChatUI {
+
+	private JFrame frame;
+	/**
+	 * @wbp.nonvisual location=-19,167
+	 */
+	private final Box verticalBox = Box.createVerticalBox();
+
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					ChatUI window = new ChatUI();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	public ChatUI() {
+		initialize();
+	}
+
+	private void initialize() {
+		int width = 480, height = 320;
+		int bs = 20;
+		
+		frame = new JFrame();
+		frame.setSize(width, height);
+		frame.setLocationRelativeTo(null);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(null);
+		
+		JTextArea textAreaChat = new JTextArea();
+		textAreaChat.setBounds(bs, bs, width - 2*bs, (height - 3*bs) * 3/5);
+		frame.getContentPane().add(textAreaChat);
+		
+		JTextArea textAreaUser = new JTextArea();
+		textAreaUser.setBounds(bs, (height - 3*bs) * 3/5 + 2*bs, width - 2*bs, (height - 3*bs) * 2/5 - bs);
+		frame.getContentPane().add(textAreaUser);
+		
+		
+	}
+}

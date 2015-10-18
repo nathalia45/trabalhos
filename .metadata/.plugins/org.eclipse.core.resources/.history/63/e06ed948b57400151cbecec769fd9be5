@@ -1,0 +1,43 @@
+package chat;
+
+import interfaces.IChatController;
+import interfaces.IChatModel;
+import network.ChatClient;
+import network.ChatServer;
+import network.IChatClientListener;
+import network.IChatServerListener;
+import utils.Log;
+
+public class Controller implements IChatController, IChatServerListener, IChatClientListener {
+	public static final int CODE_SEND_MESSAGE = 0;
+	public static final int CODE_GET_MESSAGES = 1;
+	
+	private ChatClient chatClient = null;
+	private ChatServer chatUpdater = null;
+	private IChatModel model = null;
+	
+	public Controller(IChatModel model) {
+		this.model = model;
+	}
+	
+	@Override
+	public void sendMessage(String message) {
+		chatClient.sendMessage(CODE_SEND_MESSAGE, message);
+	}
+
+	@Override
+	public void onMessageSended(int requestCode, String responseMessage) {
+		switch (requestCode) {
+			case CODE_SEND_MESSAGE:
+				Log.i(this, "Mensagem enviada: " + responseMessage);
+				break;
+		}
+	}
+
+	@Override
+	public String onMessageReceive(int requestCode, String msg) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

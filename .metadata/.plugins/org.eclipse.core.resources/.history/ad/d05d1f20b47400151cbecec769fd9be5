@@ -1,0 +1,14 @@
+package network;
+
+public class NetworkMamager {
+	public enum MessageType {
+		TAKE_MESSAGE, 
+		RESULT_OK, 
+		RESULT_ERROR
+	};
+	
+	public static final int SERVER_PORT = 7685;
+	public static final String SERVER_IP = "127.0.0.1";
+	
+	private NetworkMamager() {}
+}

@@ -1,0 +1,18 @@
+package chat;
+
+import interfaces.IChatController;
+import interfaces.IChatModel;
+
+public class Controller implements IChatController {
+	private IChatModel model = null;
+	
+	public Controller(IChatModel model) {
+		this.model = model;
+	}
+	
+	@Override
+	public void sendMessage(String message) {
+		
+	}
+
+}

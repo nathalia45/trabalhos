@@ -1,0 +1,9 @@
+package interfaces;
+
+import java.util.List;
+
+public interface IChatModel {
+	void notifyObservers();
+	List<String> getMessages();
+	void setObserver(IChatObserver observer);
+}

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="javax.swing.JTextField"/>
+<fullyQualifiedTypeName name="java.awt.List"/>
+<fullyQualifiedTypeName name="chat.IChatObserver"/>
+<fullyQualifiedTypeName name="java.awt.event.ActionListener"/>
+<fullyQualifiedTypeName name="interfaces.IChatObserver"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="interfaces.IChatController"/>
+<fullyQualifiedTypeName name="java.nio.charset.IllegalCharsetNameException"/>
+<fullyQualifiedTypeName name="interfaces.IChatModel"/>
+<fullyQualifiedTypeName name="network.INetworkMessage"/>
+<fullyQualifiedTypeName name="network.NetworkMessage"/>
+<fullyQualifiedTypeName name="network.NetworkMamager"/>
+<fullyQualifiedTypeName name="network.NetworkMamager.MessageType"/>
+<fullyQualifiedTypeName name="network.IChatServerListener"/>
+<fullyQualifiedTypeName name="network.IChatClientListener"/>
+<fullyQualifiedTypeName name="utils.Log"/>
+<fullyQualifiedTypeName name="network.ChatClient"/>
+<fullyQualifiedTypeName name="network.ChatServer"/>
+</qualifiedTypeNameHistroy>

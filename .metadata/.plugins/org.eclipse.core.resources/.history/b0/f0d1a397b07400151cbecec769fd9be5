@@ -1,0 +1,7 @@
+package chat;
+
+public interface IChatController {
+	void listem();
+	void sendMessage(String message);
+	
+}

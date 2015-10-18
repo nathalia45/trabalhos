@@ -1,0 +1,22 @@
+package chat;
+
+import interfaces.IChatController;
+import interfaces.IChatModel;
+import network.ChatClient;
+import network.ChatServer;
+
+public class Controller implements IChatController {
+	private ChatClient chatClient = null;
+	private ChatServer chatUpdater = null;
+	private IChatModel model = null;
+	
+	public Controller(IChatModel model) {
+		this.model = model;
+	}
+	
+	@Override
+	public void sendMessage(String message) {
+		chatClient.se
+	}
+
+}
